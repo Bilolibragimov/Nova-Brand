@@ -18,7 +18,6 @@ header {
     display: flex;
     justify-content: flex-end;
     background: #fff;
-    border-bottom: 1px solid var(--light);
 }
 
 .header-insta {
@@ -30,10 +29,9 @@ header {
     border-bottom: 1px solid var(--dark);
 }
 
-/* ЭЛЕГАНТНЫЙ ТЕМНЫЙ БАННЕР С БОКЕ */
+/* ТЕМНЫЙ ЭЛЕГАНТНЫЙ БАННЕР */
 .hero {
-    height: 45vh;
-    /* ПОМЕНЯЛИ КАРТИНКУ: Бархат и мягкие огни - максимально элегантно */
+    height: 40vh;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                 url('https://images.unsplash.com/photo-1533282960533-51328aa49826?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
     display: flex;
@@ -45,8 +43,8 @@ header {
 
 .hero h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 60px; /* Фиксированный большой размер */
-    letter-spacing: 8px;
+    font-size: clamp(32px, 7vw, 60px); /* Плавно уменьшается на телефоне */
+    letter-spacing: 5px;
     text-transform: uppercase;
     margin: 0;
 }
@@ -55,21 +53,20 @@ header {
 .filter-bar {
     display: flex;
     justify-content: center;
-    gap: 25px; /* Фиксированный отступ */
+    flex-wrap: wrap; /* Чтобы на телефоне кнопки переносились */
+    gap: 15px;
     padding: 30px 5%;
 }
 
 .f-btn {
     background: none;
     border: none;
-    font-family: 'Montserrat';
-    font-size: 13px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: #999;
     cursor: pointer;
-    padding: 5px 10px;
-    transition: 0.3s;
+    padding: 5px;
 }
 
 .f-btn.active {
@@ -78,75 +75,93 @@ header {
     border-bottom: 2px solid var(--gold);
 }
 
-/* СЕТКА ТОВАРОВ (Всегда 4 колонки) */
+/* СЕТКА ТОВАРОВ */
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Жестко 4 колонки */
+    grid-template-columns: repeat(4, 1fr); /* 4 колонки для Макбука */
     gap: 30px;
     padding: 0 5% 100px;
 }
 
-.item-card { cursor: pointer; transition: 0.4s; }
+/* АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ */
+@media (max-width: 768px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки для телефона - это КРАСИВО */
+        gap: 15px;
+        padding: 0 15px 100px;
+    }
+    .item-info h3 { font-size: 11px; }
+    .price { font-size: 12px; }
+    .hero { height: 30vh; }
+}
+
+.item-card { cursor: pointer; }
 
 .img-container {
     width: 100%;
     aspect-ratio: 3/4;
-    overflow: hidden; /* Обязательно для зум-эффекта */
+    overflow: hidden;
     background: var(--light);
 }
 
-/* СТИЛИ ИЗОБРАЖЕНИЙ + ЭФФЕКТ НАВЕДЕНИЯ */
 .img-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* ВОТ ДОБАВИЛИ ЭФФЕКТ: медленное, плавное увеличение */
     transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-/* При наведении на карточку, картинка увеличивается */
+/* ЭФФЕКТ ДВИЖЕНИЯ КАРТИНКИ */
 .item-card:hover .img-container img {
-    transform: scale(1.08); /* Легкое увеличение */
+    transform: scale(1.1);
 }
 
 .item-info h3 {
     margin: 15px 0 5px;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     font-weight: 500;
 }
 
-.price { color: #777; font-size: 15px; }
+.price { color: #777; font-size: 14px; }
 
-/* МОДАЛЬНОЕ ОКНО (Всегда десктопное) */
+/* МОДАЛЬНОЕ ОКНО */
 .modal {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.95);
     z-index: 2000;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 .modal-content {
     background: #fff;
     max-width: 900px;
     width: 100%;
-    display: flex; /* Всегда в строку */
+    display: flex;
     position: relative;
-    max-height: 90vh;
+    max-height: 95vh;
 }
 
 .modal-img { width: 50%; object-fit: cover; }
 .modal-info-block { width: 50%; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
 
+/* Адаптация модалки для телефона */
+@media (max-width: 800px) {
+    .modal-content { flex-direction: column; overflow-y: auto; }
+    .modal-img { width: 100%; height: 350px; }
+    .modal-info-block { width: 100%; padding: 20px; }
+    #m-name { font-size: 24px; }
+}
+
 #m-name { font-family: 'Playfair Display', serif; font-size: 32px; margin: 0; }
 .price-highlight { color: var(--gold); font-size: 20px; font-weight: 600; margin: 10px 0; }
-#m-desc { font-size: 14px; line-height: 1.6; color: #555; margin-bottom: 30px; }
-.size-options { display: flex; gap: 10px; margin: 20px 0; }
-.size-btn { padding: 10px 18px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-family: 'Montserrat'; }
+
+.size-options { display: flex; gap: 10px; margin: 15px 0; }
+.size-btn { padding: 10px 15px; border: 1px solid #ddd; background: #fff; cursor: pointer; }
 .size-btn.active { background: var(--dark); color: #fff; }
 
 .order-btn {
@@ -158,15 +173,17 @@ header {
     letter-spacing: 2px;
     cursor: pointer;
     font-family: 'Montserrat';
+    margin-top: 20px;
 }
 
 .close-modal {
     position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 35px;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
     cursor: pointer;
     z-index: 10;
+    color: #000;
 }
 
-footer { padding: 50px; text-align: center; font-size: 12px; color: #ccc; letter-spacing: 1px; }
+footer { padding: 40px; text-align: center; font-size: 10px; color: #999; letter-spacing: 1px; }
