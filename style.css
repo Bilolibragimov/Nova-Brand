@@ -1,253 +1,172 @@
 :root {
-    --accent: #d4af37; /* Золотой акцент */
-    --dark: #000000;
-    --gray: #666;
-    --light-bg: #f9f9f9;
+    --gold: #d4af37;
+    --dark: #1a1a1a;
+    --light: #f4f4f4;
 }
 
-body { 
-    margin: 0; 
-    font-family: 'Montserrat', sans-serif; 
-    background: #fff; 
-    color: var(--dark); 
-    overflow-x: hidden; 
-    scroll-behavior: smooth; 
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #fff;
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
 }
 
 /* ШАПКА */
 header {
-    display: flex; 
+    padding: 15px 5%;
+    display: flex;
     justify-content: flex-end;
-    padding: 20px 5%; 
-    position: sticky; 
-    top: 0;
-    background: rgba(255, 255, 255, 0.95); 
-    backdrop-filter: blur(5px);
-    z-index: 1000; 
-    border-bottom: 1px solid #f2f2f2;
-}
-
-.header-insta { 
-    text-decoration: none; 
-    color: var(--dark); 
-    font-size: 10px; 
-    letter-spacing: 2px; 
-    text-transform: uppercase; 
-    font-weight: 500;
-    border-bottom: 1px solid var(--dark); 
-    padding-bottom: 2px;
-    transition: 0.3s;
-}
-
-.header-insta:hover { opacity: 0.6; }
-
-/* ЭСТЕТИЧНЫЙ БАННЕР */
-.hero {
-    height: 55vh; 
-    /* Эстетичное фото роскошного темного шелка */
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), 
-                url('https://images.unsplash.com/photo-1580828343064-fde4cad202d0?q=80&w=2070&auto=format&fit=crop') 
-                no-repeat center center/cover;
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: #fff; 
-    text-align: center;
-}
-
-.hero h2 { 
-    font-family: 'Playfair Display', serif; 
-    font-size: clamp(36px, 5vw, 64px); 
-    text-transform: uppercase; 
-    letter-spacing: 12px; 
-    font-weight: 400;
-    margin: 0;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.6);
-}
-
-/* НАВИГАЦИЯ */
-.filter-bar {
-    display: flex; 
-    justify-content: center; 
-    flex-wrap: wrap;
-    gap: 25px; 
-    padding: 40px 5%;
     background: #fff;
+    border-bottom: 1px solid var(--light);
+}
+
+.header-insta {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--dark);
+    border-bottom: 1px solid var(--dark);
+}
+
+/* ЭЛЕГАНТНЫЙ ТЕМНЫЙ БАННЕР С БОКЕ */
+.hero {
+    height: 45vh;
+    /* ПОМЕНЯЛИ КАРТИНКУ: Бархат и мягкие огни - максимально элегантно */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://images.unsplash.com/photo-1533282960533-51328aa49826?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+.hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px; /* Фиксированный большой размер */
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* ФИЛЬТРЫ */
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Фиксированный отступ */
+    padding: 30px 5%;
 }
 
 .f-btn {
-    background: none; 
-    border: none; 
-    font-family: 'Montserrat'; 
-    font-size: 11px;
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-    cursor: pointer; 
-    color: #aaa;
-    padding: 10px 5px; 
+    background: none;
+    border: none;
+    font-family: 'Montserrat';
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    cursor: pointer;
+    padding: 5px 10px;
     transition: 0.3s;
-    border-bottom: 2px solid transparent;
 }
 
-.f-btn:hover { color: var(--dark); }
-
-.f-btn.active { 
-    color: var(--dark); 
-    font-weight: 600; 
-    border-bottom: 2px solid var(--accent); 
+.f-btn.active {
+    color: var(--dark);
+    font-weight: 600;
+    border-bottom: 2px solid var(--gold);
 }
 
-/* КАРТОЧКИ ТОВАРОВ */
+/* СЕТКА ТОВАРОВ (Всегда 4 колонки) */
 .catalog-grid {
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 40px; 
-    padding: 20px 5% 100px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Жестко 4 колонки */
+    gap: 30px;
+    padding: 0 5% 100px;
 }
 
-.item-card { 
-    cursor: pointer; 
-    transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+.item-card { cursor: pointer; transition: 0.4s; }
+
+.img-container {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden; /* Обязательно для зум-эффекта */
+    background: var(--light);
 }
 
-.item-card:hover { transform: translateY(-8px); }
-.item-card:active { transform: scale(0.98); }
-
-.img-container { 
-    width: 100%; 
-    height: 480px; 
-    overflow: hidden; 
-    background: var(--light-bg); 
-    margin-bottom: 20px; 
+/* СТИЛИ ИЗОБРАЖЕНИЙ + ЭФФЕКТ НАВЕДЕНИЯ */
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* ВОТ ДОБАВИЛИ ЭФФЕКТ: медленное, плавное увеличение */
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
 }
 
-.item-card img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    transition: 1.5s ease;
+/* При наведении на карточку, картинка увеличивается */
+.item-card:hover .img-container img {
+    transform: scale(1.08); /* Легкое увеличение */
 }
 
-.item-card:hover img { transform: scale(1.06); }
-
-.item-info h3 { 
-    font-size: 13px; 
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    margin: 0; 
-    font-weight: 500; 
+.item-info h3 {
+    margin: 15px 0 5px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
-.price { 
-    color: var(--gray); 
-    font-size: 14px; 
-    margin-top: 8px; 
-    font-weight: 400; 
-}
+.price { color: #777; font-size: 15px; }
 
-/* ПРЕМИАЛЬНОЕ МОДАЛЬНОЕ ОКНО (ДОБАВЛЕНО) */
+/* МОДАЛЬНОЕ ОКНО (Всегда десктопное) */
 .modal {
-    display: none; 
-    position: fixed; 
-    inset: 0; 
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(5px);
-    z-index: 2000; 
-    align-items: center; 
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    align-items: center;
     justify-content: center;
     padding: 20px;
 }
 
 .modal-content {
     background: #fff;
-    max-width: 850px;
+    max-width: 900px;
     width: 100%;
-    display: flex;
-    gap: 40px;
-    padding: 40px;
+    display: flex; /* Всегда в строку */
     position: relative;
-    animation: fadeIn 0.4s ease;
+    max-height: 90vh;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+.modal-img { width: 50%; object-fit: cover; }
+.modal-info-block { width: 50%; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
 
-.modal-img {
-    width: 50%;
-    height: 500px;
-    object-fit: cover;
-}
-
-.modal-info-block {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-}
-
-#m-name { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 400; margin: 0 0 10px 0; }
-.m-price-style { font-size: 20px; color: var(--gray); margin: 0 0 20px 0; }
+#m-name { font-family: 'Playfair Display', serif; font-size: 32px; margin: 0; }
+.price-highlight { color: var(--gold); font-size: 20px; font-weight: 600; margin: 10px 0; }
 #m-desc { font-size: 14px; line-height: 1.6; color: #555; margin-bottom: 30px; }
-
-/* КНОПКИ РАЗМЕРОВ (ДОБАВЛЕНО) */
-.size-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; font-weight: 600; }
-.size-options { display: flex; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
-
-.size-btn {
-    padding: 10px 20px;
-    border: 1px solid #ddd;
-    background: #fff;
-    cursor: pointer;
-    font-family: 'Montserrat';
-    font-size: 12px;
-    transition: 0.3s;
-}
-
-.size-btn:hover { border-color: var(--dark); }
-.size-btn.active { background: var(--dark); color: #fff; border-color: var(--dark); }
+.size-options { display: flex; gap: 10px; margin: 20px 0; }
+.size-btn { padding: 10px 18px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-family: 'Montserrat'; }
+.size-btn.active { background: var(--dark); color: #fff; }
 
 .order-btn {
-    width: 100%; 
-    padding: 20px; 
-    background: var(--dark); 
-    color: #fff; 
+    background: var(--dark);
+    color: #fff;
+    padding: 20px;
     border: none;
-    text-transform: uppercase; 
-    letter-spacing: 3px; 
-    font-size: 11px; 
+    text-transform: uppercase;
+    letter-spacing: 2px;
     cursor: pointer;
-    transition: 0.3s;
+    font-family: 'Montserrat';
 }
-
-.order-btn:hover { background: #333; letter-spacing: 5px; }
 
 .close-modal {
     position: absolute;
-    top: 20px;
-    right: 25px;
+    top: 15px;
+    right: 20px;
     font-size: 35px;
     cursor: pointer;
-    font-weight: 200;
-    color: var(--dark);
     z-index: 10;
 }
 
-/* АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ */
-@media (max-width: 768px) {
-    .modal-content { flex-direction: column; padding: 25px; gap: 20px; max-height: 90vh; overflow-y: auto; }
-    .modal-img { width: 100%; height: 350px; }
-    .modal-info-block { width: 100%; }
-    .close-modal { top: 10px; right: 15px; background: #fff; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-}
-
-footer {
-    text-align: center;
-    padding: 60px 20px;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #aaa;
-    border-top: 1px solid #f2f2f2;
-}
+footer { padding: 50px; text-align: center; font-size: 12px; color: #ccc; letter-spacing: 1px; }

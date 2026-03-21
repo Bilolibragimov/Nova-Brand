@@ -2,17 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Woman Shop | Elegance & Style</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=1200">
+    <title>Nova Brand | Elegance & Style</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <div class="header-content">
-        <a href="https://www.instagram.com/ozoda_brend_/" target="_blank" class="header-insta">Follow us on Instagram</a>
-    </div>
+    <a href="https://www.instagram.com/ozoda_brend_/" target="_blank" class="header-insta">Follow us on Instagram</a>
 </header>
 
 <section class="hero">
@@ -23,9 +21,9 @@
 
 <nav class="filter-bar">
     <button class="f-btn active" onclick="applyFilter('all', this)">Все модели</button>
-    <button class="f-btn" onclick="applyFilter('new', this)">Новинки сезона</button>
-    <button class="f-btn" onclick="applyFilter('clothes', this)">Эксклюзивная одежда</button>
-    <button class="f-btn" onclick="applyFilter('look', this)">Готовые образы</button>
+    <button class="f-btn" onclick="applyFilter('new', this)">Новинки</button>
+    <button class="f-btn" onclick="applyFilter('clothes', this)">Одежда</button>
+    <button class="f-btn" onclick="applyFilter('look', this)">Образы</button>
 </nav>
 
 <main class="catalog-grid" id="main-grid"></main>
@@ -36,18 +34,20 @@
         <img id="m-img" src="" class="modal-img">
         <div class="modal-info-block">
             <h2 id="m-name"></h2>
-            <p id="m-price" class="m-price-style"></p>
+            <p id="m-price" class="price-highlight"></p>
             <p id="m-desc"></p>
             <div class="size-section">
-                <p class="size-title">Выберите размер:</p>
+                <p class="size-title">Размер:</p>
                 <div id="m-sizes" class="size-options"></div>
             </div>
-            <button class="order-btn" onclick="redirectToTelegram()">Заказать через Telegram</button>
+            <button class="order-btn" onclick="redirectToTelegram()">Заказать в Telegram</button>
         </div>
     </div>
 </div>
 
-<footer>&copy; 2026 CRAFTED IN UZBEKISTAN. FINAL DELIVERY POINT: ANGREN CITY</footer>
+<footer>
+    &copy; 2026 NOVA BRAND. ANGREN, UZBEKISTAN.
+</footer>
 
 <script src="script.js"></script>
 </body>
